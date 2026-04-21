@@ -1461,16 +1461,16 @@
             transition: transform 400ms var(--ease-snap), box-shadow 400ms var(--ease-snap);
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow: visible;
         }
-        /* Top poster accent bar — unique color per tier */
+        /* Top poster accent bar — rounded top corners, unique color per tier */
         .pack::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 5px;
             background: var(--pink);
-            transform: scaleX(1);
+            border-radius: 20px 20px 0 0;
             transform-origin: left;
         }
         .pack:hover {
