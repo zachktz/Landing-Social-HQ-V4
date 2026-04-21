@@ -1517,6 +1517,7 @@
             .process-card { flex: 0 0 min(420px, 82vw); padding: 2rem; height: auto; min-height: 420px; margin-right: 1rem; }
             .process-card-num { font-size: 6rem; }
             .foot { flex-direction: column; align-items: flex-start; }
+            .cursor, .cursor-ring { display: none; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1525,10 +1526,56 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
+            .cursor, .cursor-ring { display: none !important; }
+            body { cursor: auto !important; }
+            a, button { cursor: pointer !important; }
+        }
+
+        /* Custom cursor */
+        @media (pointer: fine) {
+            body { cursor: none; }
+            a, button, [role="button"], .cursor-hover { cursor: none; }
+        }
+        .cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 8px; height: 8px;
+            background: var(--cream);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 260ms var(--ease-snap), height 260ms var(--ease-snap), background 260ms;
+            mix-blend-mode: difference;
+        }
+        .cursor-ring {
+            position: fixed;
+            top: 0; left: 0;
+            width: 40px; height: 40px;
+            border: 1.5px solid rgba(245, 241, 232, 0.45);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 300ms var(--ease-snap), height 300ms var(--ease-snap), border-color 300ms, background 300ms, opacity 300ms;
+        }
+        .cursor.expand { width: 4px; height: 4px; }
+        .cursor-ring.expand {
+            width: 76px; height: 76px;
+            border-color: var(--purple);
+            background: rgba(124, 58, 237, 0.12);
+        }
+        .cursor-ring.hide { opacity: 0; }
+        @media (pointer: coarse) {
+            .cursor, .cursor-ring { display: none; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Custom cursor -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
 
     <!-- Nav -->
     <nav class="nav" id="nav">
@@ -2012,6 +2059,52 @@
     </footer>
 
     <script>
+        /* ============================================================
+           CUSTOM CURSOR (with easing trail)
+           ============================================================ */
+        (function() {
+            const cursor = document.getElementById('cursor');
+            const ring = document.getElementById('cursor-ring');
+            let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+            let rx = mx, ry = my;
+            const hasPointer = window.matchMedia('(pointer: fine)').matches;
+            if (!hasPointer) return;
+
+            window.addEventListener('mousemove', e => {
+                mx = e.clientX; my = e.clientY;
+                cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+            }, { passive: true });
+
+            window.addEventListener('mouseleave', () => {
+                cursor.classList.add('hide');
+                ring.classList.add('hide');
+            });
+            window.addEventListener('mouseenter', () => {
+                cursor.classList.remove('hide');
+                ring.classList.remove('hide');
+            });
+
+            function animateRing() {
+                rx += (mx - rx) * 0.18;
+                ry += (my - ry) * 0.18;
+                ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+                requestAnimationFrame(animateRing);
+            }
+            animateRing();
+
+            const hoverTargets = document.querySelectorAll('a, button, .cursor-hover, [role="button"]');
+            hoverTargets.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('expand');
+                    ring.classList.add('expand');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('expand');
+                    ring.classList.remove('expand');
+                });
+            });
+        })();
+
         /* ============================================================
            NAV + REVEAL
            ============================================================ */
