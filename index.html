@@ -1284,15 +1284,14 @@
             gap: 1.25rem;
         }
         .stat {
-            padding: 1.75rem 1.5rem;
+            padding: 1.75rem 1.75rem 1.875rem;
             border-radius: 20px;
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 1.5rem;
-            min-height: 260px;
+            gap: 0.625rem;
+            min-height: 280px;
             transition: transform 400ms var(--ease-snap), box-shadow 400ms var(--ease-snap);
         }
         .stat:hover { transform: translateY(-4px); box-shadow: 0 22px 44px -20px rgba(10, 10, 14, 0.3); }
@@ -1300,49 +1299,67 @@
         .stat:nth-child(2) { background: var(--pink); color: var(--cream); }
         .stat:nth-child(3) { background: var(--cream-soft); color: var(--ink); border: 1.5px solid var(--ink); }
 
-        .stat-side {
-            max-width: none;
-        }
         .stat-tag {
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            margin-bottom: 1rem;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             color: var(--pink);
+            margin-bottom: 0.25rem;
         }
         .stat-tag::before {
             content: '';
-            width: 1.5rem;
+            width: 1.25rem;
             height: 1.5px;
             background: var(--pink);
         }
         /* Pink stat card — use cream tag so it's readable on pink */
         .stat:nth-child(2) .stat-tag { color: var(--cream); }
         .stat:nth-child(2) .stat-tag::before { background: var(--cream); }
-        .stat h3 {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            line-height: 1.4;
-            color: inherit;
-        }
-        .stat:nth-child(1) h3 { color: var(--cream); }
-        .stat:nth-child(2) h3 { color: var(--cream); }
-        .stat:nth-child(3) h3 { color: var(--ink); }
-        .stat h3 strong { font-weight: 700; }
+
         .stat .num {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(3.5rem, 5.5vw, 5.5rem);
+            font-size: clamp(3.75rem, 6vw, 6rem);
             line-height: 0.85;
             letter-spacing: -0.045em;
             text-align: left;
             white-space: nowrap;
+            margin-bottom: 0.25rem;
         }
+
+        .stat-label {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1rem, 1.25vw, 1.25rem);
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            color: inherit;
+            padding-top: 0.75rem;
+            border-top: 1.5px solid currentColor;
+            margin-top: auto;
+        }
+        .stat:nth-child(1) .stat-label { color: var(--cream); border-top-color: rgba(244, 238, 221, 0.25); }
+        .stat:nth-child(2) .stat-label { color: var(--cream); border-top-color: rgba(244, 238, 221, 0.3); }
+        .stat:nth-child(3) .stat-label { color: var(--ink); border-top-color: rgba(10, 10, 14, 0.2); }
+
+        .stat-note {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.45;
+            color: inherit;
+            margin-top: 0.125rem;
+        }
+        .stat:nth-child(1) .stat-note { color: rgba(244, 238, 221, 0.75); }
+        .stat:nth-child(2) .stat-note { color: rgba(244, 238, 221, 0.85); }
+        .stat:nth-child(3) .stat-note { color: var(--ink-muted); }
+        .stat-note strong { font-weight: 700; }
+        .stat:nth-child(1) .stat-note strong { color: var(--cream); }
+        .stat:nth-child(2) .stat-note strong { color: var(--cream); }
+        .stat:nth-child(3) .stat-note strong { color: var(--ink); }
         .stat .num em {
             font-family: 'Instrument Serif', serif;
             font-style: italic;
@@ -2625,27 +2642,24 @@
 
             <div class="numbers-grid">
                 <article class="stat reveal">
-                    <div class="stat-side">
-                        <span class="stat-tag">Client work</span>
-                        <h3>Views generated in a single month — three months into a new client partnership.</h3>
-                    </div>
+                    <span class="stat-tag">Client work</span>
                     <div class="num">1<span class="unit">M</span><em>+</em></div>
+                    <h3 class="stat-label">Views per month</h3>
+                    <p class="stat-note">From a single client — just <strong>three months</strong> into our partnership.</p>
                 </article>
 
                 <article class="stat reveal reveal-delay-1">
-                    <div class="stat-side">
-                        <span class="stat-tag">Monster Army</span>
-                        <h3>Followers scaled on the account — grew <strong>8.7×</strong> under our strategy. From 40K to 350K+.</h3>
-                    </div>
+                    <span class="stat-tag">Monster Army</span>
                     <div class="num">350<span class="unit">K</span><em>+</em></div>
+                    <h3 class="stat-label">Followers scaled</h3>
+                    <p class="stat-note">Grew <strong>8.7×</strong> under our strategy — from 40K to 350K+.</p>
                 </article>
 
                 <article class="stat reveal reveal-delay-2">
-                    <div class="stat-side">
-                        <span class="stat-tag">Every client</span>
-                        <h3>Founder-led. Every account has both founders in it, every week. No exceptions.</h3>
-                    </div>
+                    <span class="stat-tag">Founder-led</span>
                     <div class="num">100<span class="unit">%</span></div>
+                    <h3 class="stat-label">Both founders, every week</h3>
+                    <p class="stat-note">Every account. No layers, no account managers. No exceptions.</p>
                 </article>
             </div>
 
