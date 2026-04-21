@@ -1417,10 +1417,10 @@
         .packages {
             background: var(--cream);
             border-top: 1.5px solid var(--ink);
-            padding: clamp(3.5rem, 5.5vw, 5.5rem) 0 clamp(3rem, 4.5vw, 4.5rem);
+            padding: clamp(3rem, 4.5vw, 4rem) 0 clamp(2.5rem, 3.5vw, 3rem);
         }
         .packages-head {
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             text-align: center;
         }
         .packages-title {
@@ -1457,7 +1457,7 @@
             align-items: stretch;
         }
         .pack {
-            padding: 2rem 1.875rem 1.875rem;
+            padding: 1.625rem 1.625rem 1.5rem;
             background: var(--cream-soft);
             border: 1.5px solid var(--ink);
             border-radius: 20px;
@@ -1490,11 +1490,11 @@
         .pack.featured {
             background: var(--ink);
             color: var(--cream);
-            transform: translateY(-12px);
+            transform: translateY(-10px);
             box-shadow: 0 26px 52px -16px rgba(10, 10, 14, 0.38);
         }
         .pack.featured::before { background: var(--pink); }
-        .pack.featured:hover { transform: translateY(-16px); }
+        .pack.featured:hover { transform: translateY(-14px); }
 
         .pack--authority { background: var(--cream-warm); }
         .pack--authority::before { background: var(--ink); }
@@ -1525,15 +1525,15 @@
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            padding-bottom: 1rem;
-            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
             border-bottom: 1.5px solid var(--line-strong);
         }
         .pack.featured .pack-header { border-bottom-color: rgba(244, 238, 221, 0.2); }
 
         .pack-no {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             line-height: 0.9;
             letter-spacing: -0.05em;
             color: var(--pink);
@@ -1557,11 +1557,11 @@
             display: flex;
             align-items: baseline;
             gap: 0.5rem;
-            margin-bottom: 0.875rem;
+            margin-bottom: 0.625rem;
         }
         .pack-price .amt {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 3.5vw, 3.25rem);
+            font-size: clamp(2.25rem, 3.25vw, 3rem);
             line-height: 0.9;
             letter-spacing: -0.045em;
             color: var(--ink);
@@ -1580,8 +1580,8 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.875rem 1.125rem;
-            margin: 0 0 1.5rem;
+            padding: 0.75rem 1rem;
+            margin: 0 0 1.125rem;
             border-radius: 12px;
             background: rgba(255, 45, 107, 0.08);
             border: 1.5px dashed rgba(255, 45, 107, 0.4);
@@ -1596,7 +1596,7 @@
         }
         .pack-videos-num {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 2.25rem;
+            font-size: 2rem;
             line-height: 0.9;
             letter-spacing: -0.04em;
             color: var(--pink);
@@ -1625,19 +1625,19 @@
         /* FEATURES list */
         .pack ul {
             display: grid;
-            gap: 0.875rem;
+            gap: 0.625rem;
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.9375rem;
+            font-size: 0.9rem;
             color: var(--ink-soft);
             flex: 1;
-            margin-bottom: 1.75rem;
+            margin-bottom: 1.25rem;
         }
         .pack.featured ul { color: rgba(244, 238, 221, 0.85); }
         .pack ul li {
             display: flex;
             align-items: center;
             gap: 0.625rem;
-            padding: 0.25rem 0;
+            padding: 0.125rem 0;
         }
         .pack ul li::before {
             content: '';
@@ -1655,18 +1655,18 @@
             align-items: center;
             justify-content: center;
             gap: 0.625rem;
-            padding: 1rem 1.5rem;
+            padding: 0.875rem 1.25rem;
             background: var(--ink);
             color: var(--cream);
             border-radius: 999px;
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 700;
             letter-spacing: 0.005em;
             line-height: 1;
             border: 1.5px solid var(--ink);
             margin-top: auto;
-            min-height: 52px;
+            min-height: 48px;
             transition: background-color 260ms var(--ease-snap),
                         color 260ms var(--ease-snap),
                         border-color 260ms var(--ease-snap),
@@ -1699,12 +1699,12 @@
         .packages-foot {
             display: block;
             width: 100%;
-            margin: 2.25rem auto 0;
-            padding-top: 1.5rem;
+            margin: 1.75rem auto 0;
+            padding-top: 1.125rem;
             border-top: 1px dashed var(--line-strong);
             text-align: center;
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.825rem;
+            font-size: 0.8rem;
             color: var(--ink-faint);
             letter-spacing: 0.03em;
         }
@@ -2268,7 +2268,7 @@
             overflow: hidden;
             position: relative;
             transform: translateY(0);
-            transition: transform 0.7s cubic-bezier(0.5, 0, 0.1, 1);
+            transition: transform 0.55s cubic-bezier(0.5, 0, 0.1, 1);
             will-change: transform;
         }
         .v4-curtain-panel--top { border-bottom: 2px solid var(--pink); }
@@ -2384,7 +2384,7 @@
             background: var(--pink);
             transform-origin: left;
             transform: scaleX(0);
-            animation: v4load 1.25s ease-out forwards;
+            animation: v4load 0.9s ease-out forwards;
         }
         @keyframes v4load {
             0% { transform: scaleX(0); }
@@ -3022,8 +3022,8 @@
             }, 90);
             setTimeout(() => {
                 curtain.classList.add('done');
-                setTimeout(() => curtain.style.display = 'none', 750);
-            }, 1250);
+                setTimeout(() => curtain.style.display = 'none', 600);
+            }, 950);
         })();
 
         /* ============================================================
@@ -3144,7 +3144,8 @@
             document.head.appendChild(style);
             swap.style.setProperty('--cycle-bg', words[0].bg);
 
-            setTimeout(() => { setInterval(cycle, 2400); }, 1600);
+            // Trigger first swap fast after the curtain lifts, then loop every 2.4s
+            setTimeout(() => { cycle(); setInterval(cycle, 2400); }, 800);
         })();
 
         /* PROCESS — scroll hijack removed; vertical playbook now flows naturally */
