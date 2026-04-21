@@ -1522,13 +1522,13 @@
         .cta-kicker { margin-bottom: 2rem; }
         .cta-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 6rem);
+            font-size: clamp(2.25rem, 5vw, 5rem);
             line-height: 0.92;
             letter-spacing: -0.045em;
             text-transform: uppercase;
             color: var(--cream);
             margin: 0 auto 1.5rem;
-            max-width: 18ch;
+            max-width: 14ch;
         }
         .cta-title .ital {
             font-family: 'Instrument Serif', serif;
@@ -1819,7 +1819,8 @@
             overflow: hidden;
             position: relative;
             transform: translateY(0);
-            transition: transform 1.15s cubic-bezier(0.85, 0, 0.15, 1);
+            transition: transform 0.7s cubic-bezier(0.5, 0, 0.1, 1);
+            will-change: transform;
         }
         .v4-curtain-panel--top { border-bottom: 2px solid var(--pink); }
         .v4-curtain.done .v4-curtain-panel--top { transform: translateY(-100%); }
@@ -1841,7 +1842,7 @@
             letter-spacing: -0.035em;
             text-transform: uppercase;
             opacity: 1;
-            transition: opacity 400ms ease 100ms;
+            transition: opacity 250ms ease 0ms;
             white-space: nowrap;
         }
         .v4-curtain-wordmark .hq {
@@ -2467,7 +2468,7 @@
         <div class="container">
             <div class="cta-kicker reveal"><span class="kicker kicker--cream"><span class="dot"></span> Let's talk</span></div>
             <h1 class="cta-title reveal reveal-delay-1">
-                Ready to be <span class="ital">impossible</span> to ignore?
+                Ready to be<br/><span class="ital">impossible</span><br/>to ignore?
             </h1>
             <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="cta-btn reveal reveal-delay-3">
                 Book a discovery call
