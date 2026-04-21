@@ -34,10 +34,10 @@
             --line: rgba(10, 10, 14, 0.10);
             --line-strong: rgba(10, 10, 14, 0.22);
 
-            --container: 1680px;
-            --container-narrow: 1100px;
-            --gutter: clamp(1.125rem, 4vw, 3rem);
-            --sec-y: clamp(3rem, 9vw, 10rem);
+            --container: 1560px;
+            --container-narrow: 1040px;
+            --gutter: clamp(1.125rem, 3.5vw, 2.5rem);
+            --sec-y: clamp(3rem, 7vw, 7rem);
 
             --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
@@ -296,8 +296,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .hero-title {
-            font-size: clamp(3.25rem, 11.5vw, 11.5rem);
-            line-height: 0.86;
+            font-size: clamp(2.75rem, 8.5vw, 8rem);
+            line-height: 0.9;
             opacity: 0;
             animation: fade-up 1s var(--ease-out) 0.4s forwards;
         }
@@ -464,7 +464,7 @@
             white-space: nowrap;
             animation: scroll-ticker 32s linear infinite;
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            font-size: clamp(2rem, 4vw, 3.75rem);
             line-height: 1;
             letter-spacing: -0.025em;
             text-transform: uppercase;
@@ -528,7 +528,7 @@
         }
         .story-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            font-size: clamp(2rem, 4vw, 3.75rem);
             line-height: 0.9;
             letter-spacing: -0.035em;
             text-transform: uppercase;
@@ -590,7 +590,7 @@
         }
         .services-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            font-size: clamp(2rem, 4vw, 3.75rem);
             line-height: 0.9;
             letter-spacing: -0.035em;
             text-transform: uppercase;
@@ -817,11 +817,11 @@
 
         .step-number {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(4.5rem, 11vw, 10rem);
-            line-height: 0.82;
-            letter-spacing: -0.05em;
+            font-size: clamp(3.25rem, 6.5vw, 6.5rem);
+            line-height: 0.85;
+            letter-spacing: -0.045em;
             color: var(--cream);
-            padding-left: clamp(3.5rem, 10vw, 6.5rem);
+            padding-left: clamp(3rem, 7vw, 5rem);
             transition: all 500ms var(--ease-snap);
         }
 
@@ -949,7 +949,7 @@
         }
         .diff-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            font-size: clamp(2rem, 4vw, 3.75rem);
             line-height: 0.9;
             letter-spacing: -0.035em;
             text-transform: uppercase;
@@ -1120,7 +1120,7 @@
         }
         .team-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            font-size: clamp(2rem, 4vw, 3.75rem);
             line-height: 0.9;
             letter-spacing: -0.035em;
             text-transform: uppercase;
@@ -1247,7 +1247,7 @@
         }
         .numbers-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            font-size: clamp(2rem, 4vw, 3.75rem);
             line-height: 0.9;
             letter-spacing: -0.035em;
             text-transform: uppercase;
@@ -1326,9 +1326,9 @@
         .stat h3 strong { font-weight: 700; }
         .stat .num {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(5rem, 13vw, 14rem);
-            line-height: 0.82;
-            letter-spacing: -0.05em;
+            font-size: clamp(3.5rem, 7vw, 7rem);
+            line-height: 0.85;
+            letter-spacing: -0.045em;
             text-align: right;
             white-space: nowrap;
         }
@@ -1373,7 +1373,7 @@
         }
         .packages-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.5rem, 5.5vw, 5rem);
+            font-size: clamp(2rem, 4vw, 3.75rem);
             line-height: 0.9;
             letter-spacing: -0.035em;
             text-transform: uppercase;
@@ -1522,8 +1522,8 @@
         .cta-kicker { margin-bottom: 2rem; }
         .cta-title {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(3rem, 9vw, 9rem);
-            line-height: 0.88;
+            font-size: clamp(2.5rem, 6vw, 6rem);
+            line-height: 0.92;
             letter-spacing: -0.045em;
             text-transform: uppercase;
             color: var(--cream);
@@ -1650,13 +1650,9 @@
              <= 420px       : small phones
            ====================================== */
 
-        /* --- Ultra-wide / 4K (>= 1920px) --- */
+        /* --- Ultra-wide / 4K (>= 1920px) — keep reasonable, don't upscale display --- */
         @media (min-width: 1920px) {
-            body { font-size: 18px; }
-            .nav-inner { gap: clamp(1.5rem, 1.75vw, 2.5rem); }
-            .hero-title { font-size: clamp(3.25rem, 10vw, 13rem); }
-            .ticker-track { font-size: clamp(3rem, 4.2vw, 6rem); }
-            .stat .num { font-size: clamp(6rem, 11vw, 16rem); }
+            body { font-size: 17px; }
         }
 
         /* --- Laptop (<= 1280px) --- */
@@ -2000,7 +1996,7 @@
     <div class="v4-curtain" id="v4-curtain" aria-hidden="true">
         <div class="v4-curtain-panel v4-curtain-panel--top"></div>
         <div class="v4-curtain-panel v4-curtain-panel--bot"></div>
-        <div class="v4-curtain-meta">Your Social HQ · V4 Statement</div>
+        <div class="v4-curtain-meta">We make our clients impossible to ignore</div>
         <div class="v4-curtain-issue">Now&nbsp;booking <b>2026</b></div>
         <div class="v4-curtain-wordmark">
             <span>Your Social</span><span class="hq">HQ</span>
