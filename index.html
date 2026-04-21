@@ -34,10 +34,10 @@
             --line: rgba(10, 10, 14, 0.10);
             --line-strong: rgba(10, 10, 14, 0.22);
 
-            --container: 1400px;
-            --container-narrow: 1040px;
-            --gutter: clamp(1.25rem, 4vw, 3rem);
-            --sec-y: clamp(5rem, 10vw, 10rem);
+            --container: 1680px;
+            --container-narrow: 1100px;
+            --gutter: clamp(1.125rem, 4vw, 3rem);
+            --sec-y: clamp(3rem, 9vw, 10rem);
 
             --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
@@ -1490,34 +1490,201 @@
         .foot a:hover { color: var(--pink); }
 
         /* ======================================
-           Responsive
+           Pink accent words — swap Instrument Serif italic
+           for Archivo Black to match the display type.
+           Color stays pink. Uppercase to match siblings.
            ====================================== */
+        .hero-title .ital,
+        .ticker-track .ital,
+        .story-title .ital,
+        .services-title .ital,
+        .svc-title .ital,
+        .process-title .ital,
+        .diff-title .ital,
+        .team-title .ital,
+        .numbers-title .ital,
+        .packages-title .ital,
+        .cta-title .ital {
+            font-family: 'Archivo Black', 'Archivo', sans-serif !important;
+            font-style: normal !important;
+            font-weight: 900 !important;
+            text-transform: uppercase !important;
+            letter-spacing: -0.035em !important;
+            font-size: 1em !important;
+            color: var(--pink) !important;
+            line-height: inherit !important;
+            top: 0 !important;
+        }
+
+        /* ======================================
+           Responsive
+           ----------------------------------------
+           Ladder:
+             default        : desktop (up to 1680px container)
+             >= 1920px      : ultra-wide polish
+             <= 1280px      : laptop tweaks
+             <= 1100px      : tablet landscape (new)
+             <= 1024px      : tablet portrait (existing)
+             <= 720px       : mobile
+             <= 420px       : small phones
+           ====================================== */
+
+        /* --- Ultra-wide / 4K (>= 1920px) --- */
+        @media (min-width: 1920px) {
+            body { font-size: 18px; }
+            .nav-inner { gap: clamp(1.5rem, 1.75vw, 2.5rem); }
+            .hero-title { font-size: clamp(3.25rem, 10vw, 13rem); }
+            .ticker-track { font-size: clamp(3rem, 4.2vw, 6rem); }
+            .stat .num { font-size: clamp(6rem, 11vw, 16rem); }
+        }
+
+        /* --- Laptop (<= 1280px) --- */
+        @media (max-width: 1280px) {
+            .nav-links { gap: 1.25rem; }
+            .process-card { flex: 0 0 min(620px, 70vw); }
+        }
+
+        /* --- Tablet landscape / small laptop (<= 1100px) --- */
+        @media (max-width: 1100px) {
+            .nav-links { gap: 1rem; font-size: 0.92rem; }
+            .hero-title { font-size: clamp(3rem, 10vw, 7rem); }
+            .services-head, .diff-head, .niches-head, .process-header {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            .svc-row { grid-template-columns: 72px 1fr 1.5fr 72px; }
+            .process-card { flex: 0 0 min(560px, 74vw); padding: 2.25rem; }
+            .packages-grid { grid-template-columns: 1fr 1fr; }
+            .diff-grid { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+        }
+
+        /* --- Tablet portrait (<= 1024px) --- */
         @media (max-width: 1024px) {
             .story-grid { grid-template-columns: 1fr; gap: 2rem; }
             .story-lead { position: static; }
             .services-head, .diff-head, .niches-head, .process-header { grid-template-columns: 1fr; gap: 1.5rem; }
-            .diff-grid { grid-template-columns: 1fr; }
-            .team-grid { grid-template-columns: 1fr; max-width: 520px; }
-            .packages-grid { grid-template-columns: 1fr; }
+            .diff-grid { grid-template-columns: 1fr 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; max-width: 100%; gap: 1.5rem; }
+            .packages-grid { grid-template-columns: 1fr 1fr; }
             .pack.featured { transform: none; }
             .pack.featured:hover { transform: translateY(-4px); }
-            .svc-row { grid-template-columns: 60px 1fr 60px; }
+            .svc-row { grid-template-columns: 64px 1fr 64px; }
             .svc-desc { display: none; }
             .stat { grid-template-columns: 1fr; gap: 1.5rem; }
             .stat .num { text-align: left; }
         }
 
+        /* --- Mid-tablet (<= 880px) --- */
+        @media (max-width: 880px) {
+            .diff-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+            .packages-grid { grid-template-columns: 1fr; }
+            .diff-card { min-height: auto; padding: 2rem; }
+        }
+
+        /* --- Mobile (<= 720px) --- */
         @media (max-width: 720px) {
-            body { font-size: 16px; }
+            :root {
+                --sec-y: clamp(2.5rem, 11vw, 4.5rem);
+                --gutter: 1.125rem;
+            }
+            body { font-size: 15.5px; line-height: 1.6; }
+            .nav { padding: 0.625rem 0; }
             .nav-links { display: none; }
-            .nav-inner { grid-template-columns: auto 1fr; }
-            .nav-inner > .nav-cta { justify-self: end; }
-            .hero-title { font-size: clamp(2.5rem, 13vw, 4.75rem); }
+            .nav-inner { grid-template-columns: auto 1fr; gap: 1rem; }
+            .nav-inner > .nav-cta { justify-self: end; padding: 0.75rem 1.125rem; font-size: 0.85rem; min-height: 44px; display: inline-flex; align-items: center; }
+            .brand { gap: 0.5rem; font-size: 0.95rem; }
+            .brand-mark { width: 32px; height: 32px; }
+
+            /* Hero */
+            .hero { padding: 4rem 0 3.5rem; }
+            .hero-title { font-size: clamp(2.6rem, 13.5vw, 5rem); line-height: 0.92; }
+            .hero-sub { font-size: 1rem; }
+            .hero-ctas { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+            .hero-ctas .btn { justify-content: center; width: 100%; padding: 1.125rem 1.5rem; min-height: 52px; }
+            .hero-meta { gap: 1.25rem; }
             .hero-sticker { display: none; }
-            .process-card { flex: 0 0 min(420px, 82vw); padding: 2rem; height: auto; min-height: 420px; margin-right: 1rem; }
-            .process-card-num { font-size: 6rem; }
-            .foot { flex-direction: column; align-items: flex-start; }
+
+            /* Ticker */
+            .ticker-track { font-size: clamp(1.75rem, 9vw, 2.75rem); }
+
+            /* Services */
+            .svc-row { grid-template-columns: 48px 1fr 48px; padding: 1.5rem 0; gap: 0.75rem; }
+            .svc-title { font-size: clamp(1.5rem, 7vw, 2.25rem); }
+            .svc-num { font-size: 0.7rem; }
+
+            /* Process */
+            .process-sticky { height: auto; min-height: 100vh; padding: 3rem 0; }
+            .process-header { padding-bottom: 1.5rem; }
+            .process-card {
+                flex: 0 0 min(380px, 84vw);
+                padding: 1.75rem;
+                height: auto;
+                min-height: 360px;
+                margin-right: 0.75rem;
+            }
+            .process-card-num { font-size: clamp(4rem, 15vw, 6rem); }
+            .process-card-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+            .process-card-desc { font-size: 0.95rem; }
+
+            /* Diff */
+            .diff-card { padding: 1.75rem; min-height: auto; }
+            .diff-card h3 { font-size: clamp(1.5rem, 6vw, 2rem); }
+
+            /* Niches */
+            .niche-pill { font-size: 1rem; padding: 0.75rem 1.125rem; white-space: nowrap; }
+
+            /* Team */
+            .team-grid { gap: 2.5rem; }
+            .member-info { padding: 1.5rem 1.25rem; }
+            .member-name { font-size: clamp(1.5rem, 6vw, 2.25rem); }
+
+            /* Stats */
+            .stat .num { font-size: clamp(4rem, 18vw, 7rem); line-height: 0.9; }
+
+            /* Packages */
+            .pack { padding: 1.75rem 1.5rem; }
+            .pack-name { font-size: clamp(1.5rem, 6vw, 2rem); }
+            .pack-amt { font-size: clamp(2rem, 9vw, 2.75rem); }
+            .pack ul li { padding: 0.625rem 0 0.625rem 1.25rem; }
+
+            /* Footer */
+            .foot { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem 0 1.5rem; }
+
+            /* Cursor off on touch */
             .cursor, .cursor-ring { display: none; }
+
+            /* Curtain tweaks */
+            .v4-curtain-issue { display: none; }
+            .v4-curtain-meta { font-size: 0.65rem; letter-spacing: 0.15em; }
+        }
+
+        /* --- Small phones (<= 420px) --- */
+        @media (max-width: 420px) {
+            :root { --gutter: 1rem; }
+            body { font-size: 15px; }
+            .brand span:last-child { display: none; }
+            .hero-title { font-size: clamp(2.25rem, 14vw, 3.25rem); }
+            .hero-sub { font-size: 0.95rem; }
+            .hero-meta { gap: 0.75rem 1rem; font-size: 0.8rem; }
+            .ticker-track { font-size: 1.5rem; }
+            .svc-title { font-size: clamp(1.35rem, 7vw, 1.75rem); }
+            .process-card { flex: 0 0 88vw; padding: 1.5rem; min-height: 340px; }
+            .process-card-num { font-size: 4rem; }
+            .diff-card { padding: 1.5rem; }
+            .diff-card h3 { font-size: 1.35rem; }
+            .niche-pill { font-size: 0.95rem; padding: 0.625rem 1rem; }
+            .stat .num { font-size: 4.5rem; }
+            .pack { padding: 1.5rem 1.25rem; }
+            .pack-amt { font-size: 2.25rem; }
+        }
+
+        /* --- Landscape orientation on small screens --- */
+        @media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
+            .hero { padding: 3rem 0; }
+            .hero-title { font-size: clamp(2rem, 7vw, 3.5rem); }
+            .process-sticky { min-height: auto; padding: 2rem 0; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1529,6 +1696,154 @@
             .cursor, .cursor-ring { display: none !important; }
             body { cursor: auto !important; }
             a, button { cursor: pointer !important; }
+        }
+
+        /* ======================================
+           Intro curtain loader (ported from V6, styled for V4)
+           ====================================== */
+        .v4-curtain {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            pointer-events: none;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            font-family: 'Instrument Sans', sans-serif;
+        }
+        .v4-curtain-panel {
+            background: var(--ink);
+            overflow: hidden;
+            position: relative;
+            transform: translateY(0);
+            transition: transform 1.15s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+        .v4-curtain-panel--top { border-bottom: 2px solid var(--pink); }
+        .v4-curtain.done .v4-curtain-panel--top { transform: translateY(-100%); }
+        .v4-curtain.done .v4-curtain-panel--bot { transform: translateY(100%); }
+
+        /* Center wordmark — V4's poster treatment */
+        .v4-curtain-wordmark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: baseline;
+            gap: 0.25em;
+            color: var(--cream);
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 11vw, 9rem);
+            line-height: 0.88;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            opacity: 1;
+            transition: opacity 400ms ease 100ms;
+            white-space: nowrap;
+        }
+        .v4-curtain-wordmark .hq {
+            font-family: 'Instrument Serif', serif;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--pink);
+            text-transform: none;
+            letter-spacing: -0.02em;
+            margin-left: 0.15em;
+        }
+        .v4-curtain.done .v4-curtain-wordmark { opacity: 0; }
+
+        /* Top-left meta */
+        .v4-curtain-meta {
+            position: absolute;
+            top: clamp(1.25rem, 3vw, 2rem);
+            left: clamp(1.25rem, 3vw, 2rem);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(244, 238, 221, 0.7);
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+        .v4-curtain-meta::before {
+            content: '';
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 0 3px rgba(255, 45, 107, 0.25);
+            animation: v4pulse 1.6s ease-in-out infinite;
+        }
+        @keyframes v4pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.55; transform: scale(1.25); }
+        }
+
+        /* Top-right issue tag */
+        .v4-curtain-issue {
+            position: absolute;
+            top: clamp(1.25rem, 3vw, 2rem);
+            right: clamp(1.25rem, 3vw, 2rem);
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+            color: rgba(244, 238, 221, 0.55);
+            z-index: 2;
+        }
+        .v4-curtain-issue b { color: var(--cream); font-style: normal; font-family: 'Archivo Black', sans-serif; font-size: 0.85em; letter-spacing: -0.02em; }
+
+        /* Bottom progress */
+        .v4-curtain-prog {
+            position: absolute;
+            bottom: clamp(1.25rem, 3vw, 2rem);
+            left: clamp(1.25rem, 3vw, 2rem);
+            right: clamp(1.25rem, 3vw, 2rem);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(244, 238, 221, 0.55);
+            z-index: 2;
+        }
+        .v4-curtain-prog b { color: var(--cream); }
+        .v4-curtain-line {
+            height: 1.5px;
+            background: rgba(244, 238, 221, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .v4-curtain-line::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--pink);
+            transform-origin: left;
+            transform: scaleX(0);
+            animation: v4load 1.25s ease-out forwards;
+        }
+        @keyframes v4load {
+            0% { transform: scaleX(0); }
+            100% { transform: scaleX(1); }
+        }
+
+        /* Corner ticks — poster-like registration marks */
+        .v4-curtain-panel::before,
+        .v4-curtain-panel::after {
+            content: '';
+            position: absolute;
+            width: 18px; height: 18px;
+            border: 1.5px solid rgba(244, 238, 221, 0.28);
+        }
+        .v4-curtain-panel--top::before { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
+        .v4-curtain-panel--top::after  { top: 12px; right: 12px; border-left: 0; border-bottom: 0; }
+        .v4-curtain-panel--bot::before { bottom: 12px; left: 12px; border-right: 0; border-top: 0; }
+        .v4-curtain-panel--bot::after  { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .v4-curtain { display: none !important; }
         }
 
         /* Custom cursor */
@@ -1572,6 +1887,22 @@
     </style>
 </head>
 <body>
+
+    <!-- Intro curtain (ported from V6, V4-styled) -->
+    <div class="v4-curtain" id="v4-curtain" aria-hidden="true">
+        <div class="v4-curtain-panel v4-curtain-panel--top"></div>
+        <div class="v4-curtain-panel v4-curtain-panel--bot"></div>
+        <div class="v4-curtain-meta">Your Social HQ · V4 Statement</div>
+        <div class="v4-curtain-issue">Now&nbsp;booking <b>2026</b></div>
+        <div class="v4-curtain-wordmark">
+            <span>Your Social</span><span class="hq">HQ</span>
+        </div>
+        <div class="v4-curtain-prog">
+            <span>Loading</span>
+            <span class="v4-curtain-line"></span>
+            <span><b id="v4-curtain-pct">0%</b></span>
+        </div>
+    </div>
 
     <!-- Custom cursor -->
     <div class="cursor" id="cursor" aria-hidden="true"></div>
@@ -2038,9 +2369,6 @@
             <h1 class="cta-title reveal reveal-delay-1">
                 Ready to be <span class="ital">impossible</span> to ignore?
             </h1>
-            <p class="cta-sub reveal reveal-delay-2">
-                Book a 30-minute discovery call. We'll learn your brand, map a strategy, and show you exactly what's possible. No slides, no pressure — just a real conversation.
-            </p>
             <a href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" class="cta-btn reveal reveal-delay-3">
                 Book a discovery call
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
@@ -2059,6 +2387,25 @@
     </footer>
 
     <script>
+        /* ============================================================
+           INTRO CURTAIN
+           ============================================================ */
+        (function() {
+            const curtain = document.getElementById('v4-curtain');
+            if (!curtain) return;
+            const pct = document.getElementById('v4-curtain-pct');
+            let p = 0;
+            const interval = setInterval(() => {
+                p = Math.min(100, p + Math.floor(9 + Math.random() * 15));
+                if (pct) pct.textContent = p + '%';
+                if (p >= 100) clearInterval(interval);
+            }, 90);
+            setTimeout(() => {
+                curtain.classList.add('done');
+                setTimeout(() => curtain.style.display = 'none', 1400);
+            }, 1450);
+        })();
+
         /* ============================================================
            CUSTOM CURSOR (with easing trail)
            ============================================================ */
