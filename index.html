@@ -391,11 +391,11 @@
             display: inline-block;
             color: var(--cream);
             white-space: nowrap;
-            animation: word-in 0.9s var(--ease-out) both;
+            animation: word-in 0.55s var(--ease-out) both;
         }
         @keyframes word-in {
             from { transform: translateY(100%); opacity: 0; }
-            20% { opacity: 1; }
+            30% { opacity: 1; }
             to { transform: translateY(0); opacity: 1; }
         }
         @keyframes word-out {
@@ -404,7 +404,7 @@
             to { transform: translateY(-100%); opacity: 0; }
         }
         .hero-title .row--cycle.out .cycle-word {
-            animation: word-out 0.7s var(--ease-out) both;
+            animation: word-out 0.4s var(--ease-out) both;
         }
 
         .hero-title .ital {
@@ -645,10 +645,87 @@
             background: var(--pink);
         }
 
+        /* Receipts strip — 3 quick credibility chips under the title */
+        .story-receipts {
+            margin-top: 2.25rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1.5px solid var(--ink);
+            border-bottom: 1.5px solid var(--ink);
+        }
+        .story-receipt {
+            padding: 1rem 1rem 1rem 0;
+            border-right: 1px solid var(--line-strong);
+        }
+        .story-receipt:last-child { border-right: 0; padding-right: 0; }
+        .story-receipt:not(:first-child) { padding-left: 1rem; }
+        .story-receipt .label {
+            display: block;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            margin-bottom: 0.35rem;
+        }
+        .story-receipt .value {
+            display: block;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(0.9rem, 1.05vw, 1.1rem);
+            line-height: 1.05;
+            letter-spacing: -0.015em;
+            color: var(--ink);
+            text-transform: uppercase;
+        }
+        .story-receipt .value em {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--pink);
+            text-transform: none;
+            font-size: 1.25em;
+            letter-spacing: 0;
+            margin: 0 0.25em;
+            vertical-align: -0.05em;
+        }
+
+        /* Decorative "since" stamp — top-right of lead column */
+        .story-stamp {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 96px;
+            height: 96px;
+            pointer-events: none;
+        }
+        .story-stamp svg { width: 100%; height: 100%; overflow: visible; }
+        .story-stamp-ring { animation: spin-slow 22s linear infinite; transform-origin: center; }
+        .story-stamp text {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 10px;
+            letter-spacing: 2.4px;
+            fill: var(--ink);
+            text-transform: uppercase;
+        }
+        .story-stamp-center {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 1.35rem;
+            color: var(--pink);
+            line-height: 1;
+        }
+
         .story-prose {
             font-size: 1.125rem;
             line-height: 1.65;
             color: var(--ink-soft);
+            position: relative;
         }
         .story-prose p + p { margin-top: 1.75rem; }
         .story-prose strong { color: var(--ink); font-weight: 600; }
@@ -658,6 +735,49 @@
             border-radius: 4px;
             color: var(--ink);
             font-weight: 500;
+        }
+
+        /* Pull quote — editorial callout between paragraphs */
+        .story-pull {
+            display: block;
+            margin: 2.25rem 0;
+            padding: 1.75rem 1.75rem 1.75rem 2rem;
+            background: var(--cream-soft);
+            border: 1.5px solid var(--ink);
+            border-left: 6px solid var(--pink);
+            border-radius: 16px;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+            line-height: 1.35;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+            position: relative;
+        }
+        .story-pull::before {
+            content: '"';
+            position: absolute;
+            top: -0.2em;
+            left: 0.5rem;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 3.5rem;
+            line-height: 1;
+            color: var(--pink);
+            font-style: normal;
+            opacity: 0.25;
+        }
+        .story-pull-author {
+            display: block;
+            margin-top: 0.875rem;
+            padding-top: 0.875rem;
+            border-top: 1px solid var(--line-strong);
+            font-family: 'Instrument Sans', sans-serif;
+            font-style: normal;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
         }
 
         /* ======================================
@@ -1453,19 +1573,21 @@
         .packages-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
+            gap: 1.5rem;
             align-items: stretch;
+            margin-top: 2.5rem;
         }
         .pack {
-            padding: 1.625rem 1.625rem 1.5rem;
+            padding: 2.25rem 2rem 2rem;
             background: var(--cream-soft);
             border: 1.5px solid var(--ink);
-            border-radius: 20px;
+            border-radius: 22px;
             position: relative;
             transition: transform 400ms var(--ease-snap), box-shadow 400ms var(--ease-snap);
             display: flex;
             flex-direction: column;
             overflow: visible;
+            min-height: 620px;
         }
         /* Top poster accent bar — rounded top corners, unique color per tier */
         .pack::before {
@@ -1525,8 +1647,8 @@
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            padding-bottom: 0.75rem;
-            margin-bottom: 1rem;
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
             border-bottom: 1.5px solid var(--line-strong);
         }
         .pack.featured .pack-header { border-bottom-color: rgba(244, 238, 221, 0.2); }
@@ -1557,7 +1679,7 @@
             display: flex;
             align-items: baseline;
             gap: 0.5rem;
-            margin-bottom: 0.625rem;
+            margin-bottom: 1.125rem;
         }
         .pack-price .amt {
             font-family: 'Archivo Black', sans-serif;
@@ -1579,10 +1701,10 @@
         .pack-videos {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            margin: 0 0 1.125rem;
-            border-radius: 12px;
+            gap: 0.875rem;
+            padding: 1rem 1.125rem;
+            margin: 0 0 1.5rem;
+            border-radius: 14px;
             background: rgba(255, 45, 107, 0.08);
             border: 1.5px dashed rgba(255, 45, 107, 0.4);
         }
@@ -1625,19 +1747,19 @@
         /* FEATURES list */
         .pack ul {
             display: grid;
-            gap: 0.625rem;
+            gap: 0.875rem;
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--ink-soft);
             flex: 1;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.75rem;
         }
-        .pack.featured ul { color: rgba(244, 238, 221, 0.85); }
+        .pack.featured ul { color: rgba(244, 238, 221, 0.88); }
         .pack ul li {
             display: flex;
             align-items: center;
-            gap: 0.625rem;
-            padding: 0.125rem 0;
+            gap: 0.75rem;
+            padding: 0.25rem 0;
         }
         .pack ul li::before {
             content: '';
@@ -1695,20 +1817,52 @@
             color: var(--cream);
         }
 
-        /* Packages footnote */
+        /* Packages footnote — upgraded to a prominent info banner */
         .packages-foot {
-            display: block;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.875rem 1.5rem;
             width: 100%;
-            margin: 1.75rem auto 0;
-            padding-top: 1.125rem;
-            border-top: 1px dashed var(--line-strong);
+            max-width: 900px;
+            margin: 2.75rem auto 0;
+            padding: 1.25rem 1.75rem;
+            background: var(--ink);
+            color: var(--cream);
+            border-radius: 999px;
             text-align: center;
             font-family: 'Instrument Sans', sans-serif;
-            font-size: 0.8rem;
-            color: var(--ink-faint);
-            letter-spacing: 0.03em;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
         }
-        .packages-foot strong { color: var(--ink); font-weight: 700; }
+        .packages-foot .foot-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--cream);
+        }
+        .packages-foot .foot-chip::before {
+            content: '';
+            width: 7px; height: 7px;
+            background: var(--pink);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .packages-foot .foot-chip strong {
+            font-family: 'Archivo Black', sans-serif;
+            font-weight: 900;
+            color: var(--cream);
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+        .packages-foot .foot-divider {
+            color: rgba(244, 238, 221, 0.35);
+            font-size: 1rem;
+        }
 
         /* ======================================
            CTA — editorial closer (new)
@@ -2118,7 +2272,8 @@
                 gap: 1.25rem;
             }
             .svc-row { grid-template-columns: 72px 1fr 1.5fr 72px; }
-            .packages-grid { grid-template-columns: 1fr 1fr; }
+            .packages-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+            .pack { padding: 1.75rem 1.5rem 1.75rem; }
             .diff-grid { grid-template-columns: 1fr 1fr; }
             .team-grid { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
         }
@@ -2130,21 +2285,41 @@
             .services-head, .diff-head, .niches-head, .process-header { grid-template-columns: 1fr; gap: 1.5rem; }
             .diff-grid { grid-template-columns: 1fr 1fr; }
             .team-grid { grid-template-columns: 1fr 1fr; max-width: 100%; gap: 1.5rem; }
-            .packages-grid { grid-template-columns: 1fr 1fr; }
+            .packages-grid { grid-template-columns: repeat(3, 1fr); gap: 0.875rem; }
             .pack.featured { transform: none; }
             .pack.featured:hover { transform: translateY(-4px); }
+            .pack { min-height: auto; padding: 1.5rem 1.25rem 1.5rem; }
+            .pack-price .amt { font-size: clamp(1.75rem, 3vw, 2.25rem); }
+            .pack-videos-num { font-size: 1.75rem; }
+            .pack-name { font-size: 0.875rem; }
+            .pack-no { font-size: 1.75rem; }
             .svc-row { grid-template-columns: 64px 1fr 64px; }
             .svc-desc { display: none; }
             .stat { grid-template-columns: 1fr; gap: 1.5rem; }
             .stat .num { text-align: left; }
+            /* Nav: keep brand on one line, tighten gap */
+            .nav-inner { gap: 1rem; }
+            .brand { white-space: nowrap; }
+            .brand span:last-child { font-size: 0.95rem; }
+            .nav-links { gap: 0.875rem; font-size: 0.875rem; }
+            /* Story receipts: give each breathing room */
+            .story-receipts { grid-template-columns: repeat(3, 1fr); gap: 0; }
+            .story-pull { margin: 2rem 0; padding: 1.5rem 1.5rem 1.5rem 1.75rem; }
+            /* Hero sticker smaller on tablet to keep out of title */
+            .hero-sticker { width: 140px; height: 140px; top: 14%; right: 1%; }
+            .hero-sticker-center .mark { font-size: 2.75rem; }
+            .hero-sticker-ring text { font-size: 11.5px; letter-spacing: 3px; }
         }
 
         /* --- Mid-tablet (<= 880px) --- */
         @media (max-width: 880px) {
-            .diff-grid { grid-template-columns: 1fr; }
             .team-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
             .packages-grid { grid-template-columns: 1fr; }
-            .diff-card { min-height: auto; padding: 2rem; }
+            .svc-list { grid-template-columns: 1fr 1fr; }
+            .numbers-grid { grid-template-columns: 1fr 1fr; }
+            .numbers-grid .stat:nth-child(3) { grid-column: 1 / -1; }
+            /* Story stamp: get out of the way on narrower layouts */
+            .story-stamp { top: auto; right: 0; bottom: -12px; width: 72px; height: 72px; }
         }
 
         /* --- Mobile (<= 720px) --- */
@@ -2163,44 +2338,86 @@
 
             /* Hero */
             .hero { padding: 4rem 0 3.5rem; }
-            .hero-title { font-size: clamp(2.6rem, 13.5vw, 5rem); line-height: 0.92; }
+            .hero-title { font-size: clamp(2.25rem, 11.5vw, 4.25rem); line-height: 0.95; letter-spacing: -0.04em; }
+            .hero-title .row--cycle { padding: 0 0.12em; }
             .hero-sub { font-size: 1rem; }
             .hero-ctas { flex-direction: column; align-items: stretch; gap: 0.75rem; }
             .hero-ctas .btn { justify-content: center; width: 100%; padding: 1.125rem 1.5rem; min-height: 52px; }
-            .hero-meta { gap: 1.25rem; }
+            .hero-meta { gap: 1.25rem; padding-top: 1.75rem; margin-top: 1.5rem; }
+            .hero-meta-left { gap: 1.5rem 2rem; width: 100%; }
+            .hero-meta-item { flex: 0 0 auto; min-width: 45%; }
             .hero-sticker { display: none; }
 
             /* Ticker */
-            .ticker-track { font-size: clamp(1.75rem, 9vw, 2.75rem); }
+            .ticker-track { font-size: clamp(1.75rem, 9vw, 2.75rem); gap: 2.5rem; }
+            .ticker-track span { gap: 2.5rem; }
 
-            /* Services */
-            .svc-row { grid-template-columns: 48px 1fr 48px; padding: 1.5rem 0; gap: 0.75rem; }
-            .svc-title { font-size: clamp(1.5rem, 7vw, 2.25rem); }
+            /* Story — stack gracefully */
+            .story-stamp { display: none; }
+            .story-receipts { grid-template-columns: 1fr; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
+            .story-receipt { border-right: 0; border-bottom: 1px solid var(--line-strong); padding: 0.875rem 0 !important; }
+            .story-receipt:last-child { border-bottom: 0; }
+            .story-receipt:not(:first-child) { padding-left: 0; }
+            .story-receipt .label { font-size: 0.58rem; }
+            .story-receipt .value { font-size: 1.125rem; }
+            .story-prose { font-size: 1.03rem; }
+            .story-pull { padding: 1.5rem 1.25rem 1.5rem 1.5rem; font-size: 1.1rem; margin: 1.75rem 0; }
+            .story-pull::before { font-size: 2.5rem; }
+
+            /* Services — stack fully */
+            .svc-list { grid-template-columns: 1fr; gap: 0.875rem; border-top: 1.5px solid var(--ink); padding-top: 1.25rem; }
+            .svc-row { padding: 1.25rem 1.25rem; gap: 0.625rem; display: flex; flex-direction: column; }
+            .svc-title { font-size: clamp(1.5rem, 7vw, 2rem); }
             .svc-num { font-size: 0.7rem; }
+            .svc-desc { font-size: 0.875rem; }
 
             /* Process */
             .process-header { padding-bottom: 1.5rem; }
-
-            /* Diff */
-            .diff-card { padding: 1.75rem; min-height: auto; }
-            .diff-card h3 { font-size: clamp(1.5rem, 6vw, 2rem); }
+            .step-row { padding: 1.5rem 1.25rem; }
+            .step-number { font-size: 2.75rem; }
 
             /* Niches */
             .niche-pill { font-size: 1rem; padding: 0.75rem 1.125rem; white-space: nowrap; }
 
-            /* Team */
-            .team-grid { gap: 2.5rem; }
-            .member-info { padding: 1.5rem 1.25rem; }
+            /* Team — stack photo above info */
+            .team-head { text-align: left; }
+            .team-lead { margin: 0; }
+            .team-grid { gap: 1.5rem; max-width: 100%; }
+            .member { grid-template-columns: 1fr; }
+            .member-visual { min-height: 220px; aspect-ratio: 4 / 3; }
+            .member-info { padding: 1.5rem 1.5rem 1.75rem; }
             .member-name { font-size: clamp(1.5rem, 6vw, 2.25rem); }
 
-            /* Stats */
-            .stat .num { font-size: clamp(4rem, 18vw, 7rem); line-height: 0.9; }
+            /* Numbers — stack */
+            .numbers-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .numbers-grid .stat:nth-child(3) { grid-column: auto; }
+            .stat { min-height: auto; padding: 1.5rem 1.5rem 1.75rem; }
+            .stat .num { font-size: clamp(3.5rem, 16vw, 5.5rem); line-height: 0.9; }
 
             /* Packages */
-            .pack { padding: 1.75rem 1.5rem; }
-            .pack-name { font-size: clamp(1.5rem, 6vw, 2rem); }
-            .pack-amt { font-size: clamp(2rem, 9vw, 2.75rem); }
-            .pack ul li { padding: 0.625rem 0 0.625rem 1.25rem; }
+            .pack { padding: 1.75rem 1.5rem 1.75rem; min-height: auto; }
+            .pack-header { padding-bottom: 1rem; margin-bottom: 1.25rem; }
+            .pack-no { font-size: 1.75rem; }
+            .pack-name { font-size: 0.95rem; }
+            .pack-price .amt { font-size: 2.5rem; }
+            .pack.featured { transform: none; }
+            .pack.featured:hover { transform: translateY(-4px); }
+            .pack.featured::after { right: 50%; transform: rotate(3deg) translateX(50%); top: -14px; }
+            .pack ul { font-size: 0.9rem; gap: 0.75rem; margin-bottom: 1.5rem; }
+            .pack ul li { padding: 0.125rem 0; }
+            .pack-videos { padding: 0.875rem 1rem; }
+            .pack-videos-num { font-size: 1.75rem; }
+            .pack-videos-label { font-size: 0.72rem; }
+            .packages-foot { border-radius: 20px; padding: 1rem 1.25rem; font-size: 0.875rem; gap: 0.5rem 1rem; flex-direction: column; }
+            .packages-foot .foot-divider { display: none; }
+
+            /* CTA */
+            .cta-title { font-size: clamp(2.5rem, 12vw, 4rem); }
+            .cta-sub { font-size: 1.05rem; }
+            .cta-btn { width: 100%; justify-content: center; padding: 1rem 1.25rem; }
+            .cta-actions { flex-direction: column; align-items: stretch; gap: 1rem; }
+            .cta-email { justify-content: center; }
+            .cta-meta { gap: 0.75rem 1.25rem; font-size: 0.72rem; }
 
             /* Footer */
             .foot { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 2rem 0 1.5rem; }
@@ -2218,19 +2435,17 @@
             :root { --gutter: 1rem; }
             body { font-size: 15px; }
             .brand span:last-child { display: none; }
-            .hero-title { font-size: clamp(2.25rem, 14vw, 3.25rem); }
+            .hero-title { font-size: clamp(2rem, 10.5vw, 3rem); letter-spacing: -0.04em; }
             .hero-sub { font-size: 0.95rem; }
             .hero-meta { gap: 0.75rem 1rem; font-size: 0.8rem; }
             .ticker-track { font-size: 1.5rem; }
             .svc-title { font-size: clamp(1.35rem, 7vw, 1.75rem); }
-            .process-card { flex: 0 0 88vw; padding: 1.5rem; min-height: 340px; }
-            .process-card-num { font-size: 4rem; }
-            .diff-card { padding: 1.5rem; }
-            .diff-card h3 { font-size: 1.35rem; }
             .niche-pill { font-size: 0.95rem; padding: 0.625rem 1rem; }
-            .stat .num { font-size: 4.5rem; }
+            .stat .num { font-size: 3.75rem; }
             .pack { padding: 1.5rem 1.25rem; }
-            .pack-amt { font-size: 2.25rem; }
+            .pack-price .amt { font-size: 2.25rem; }
+            .cta-title { font-size: clamp(2.25rem, 13vw, 3.25rem); }
+            .packages-foot { font-size: 0.82rem; }
         }
 
         /* --- Landscape orientation on small screens --- */
@@ -2576,11 +2791,41 @@
         <div class="container">
             <div class="story-grid">
                 <div class="story-lead">
+                    <div class="story-stamp" aria-hidden="true">
+                        <svg viewBox="0 0 96 96">
+                            <defs>
+                                <path id="story-stamp-path" d="M 48, 48 m -34, 0 a 34,34 0 1,1 68,0 a 34,34 0 1,1 -68,0" />
+                            </defs>
+                            <g class="story-stamp-ring">
+                                <text>
+                                    <textPath href="#story-stamp-path" startOffset="0">
+                                        ★ FOUNDER RUN ★ FOUNDER RUN ★
+                                    </textPath>
+                                </text>
+                            </g>
+                        </svg>
+                        <div class="story-stamp-center">HQ</div>
+                    </div>
                     <div class="story-kicker reveal"><span class="kicker"><span class="dot"></span> Our story</span></div>
                     <h2 class="story-title reveal">
                         Two lifelong friends. <span class="ital">One</span> vision.
                     </h2>
                     <p class="story-sign reveal">Zach Katz · Co-Founder</p>
+
+                    <div class="story-receipts reveal reveal-delay-2">
+                        <div class="story-receipt">
+                            <span class="label">Pedigree</span>
+                            <span class="value">Monster<em>·</em>Energy</span>
+                        </div>
+                        <div class="story-receipt">
+                            <span class="label">Friends since</span>
+                            <span class="value">Middle<em>·</em>school</span>
+                        </div>
+                        <div class="story-receipt">
+                            <span class="label">Based</span>
+                            <span class="value">San<em>·</em>Diego</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="story-prose">
@@ -2590,8 +2835,14 @@
                     <p class="reveal reveal-delay-1">
                         The pattern we kept seeing: local operators with great businesses, real stories, real reputations — but totally invisible on social. Not because they didn't deserve attention. Because nobody was building for them <strong>the way the big brands get built for</strong>.
                     </p>
+
+                    <blockquote class="story-pull reveal reveal-delay-2">
+                        Same rigor the Fortune 500 gets — applied to the brands shaping their own communities.
+                        <span class="story-pull-author">— The thesis</span>
+                    </blockquote>
+
                     <p class="reveal reveal-delay-2">
-                        So we built it ourselves. Same rigor, same creative standards, same hands-on obsession — applied to the brands shaping their own communities.
+                        So we built it ourselves. Same creative standards, same hands-on obsession — applied to the brands that mean business in their own markets.
                     </p>
                     <p class="reveal reveal-delay-3">
                         <strong>And yes — we've been friends for most of our lives.</strong> That's not a coincidence. You don't build something like this with just anyone.
@@ -2697,66 +2948,6 @@
                         <span class="step-tag">Growth</span>
                         <h3 class="step-title">Compound</h3>
                         <p class="step-desc">Monthly reporting. Constant iteration. Compounding results.</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Differentiators -->
-    <section class="diff">
-        <div class="container">
-            <div class="diff-head">
-                <div class="reveal">
-                    <span class="kicker kicker--pink" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> What sets us apart</span>
-                    <h2 class="diff-title">
-                        What most agencies <span class="ital">can't</span> match.
-                    </h2>
-                </div>
-                <p class="diff-lead reveal reveal-delay-1">
-                    The things you won't find on a typical services page — but you'll feel every week once we're working together.
-                </p>
-            </div>
-
-            <div class="diff-grid">
-                <article class="diff-card reveal">
-                    <div class="diff-card-top">
-                        <span class="num">01</span>
-                        <span class="tag">Tech</span>
-                    </div>
-                    <div>
-                        <h3>Proprietary AI</h3>
-                        <p>Our in-house AI runs a continuous deep-dive on every niche — 24/7 monitoring of trends, talking points, and what's landing. Every script starts from an edge.</p>
-                    </div>
-                </article>
-                <article class="diff-card reveal reveal-delay-1">
-                    <div class="diff-card-top">
-                        <span class="num">02</span>
-                        <span class="tag">Strategy</span>
-                    </div>
-                    <div>
-                        <h3>Strategy That Evolves</h3>
-                        <p>Monthly performance unpacks with you — plus direct calls with Instagram &amp; TikTok for algorithm updates from the source.</p>
-                    </div>
-                </article>
-                <article class="diff-card reveal reveal-delay-2">
-                    <div class="diff-card-top">
-                        <span class="num">03</span>
-                        <span class="tag">Pedigree</span>
-                    </div>
-                    <div>
-                        <h3>Monster Energy Pedigree</h3>
-                        <p>Zach runs social across the entire Monster Energy portfolio. That operator's perspective — built inside one of the most content-forward companies on the planet — shapes every account we touch.</p>
-                    </div>
-                </article>
-                <article class="diff-card reveal reveal-delay-3">
-                    <div class="diff-card-top">
-                        <span class="num">04</span>
-                        <span class="tag">People</span>
-                    </div>
-                    <div>
-                        <h3>Two Founders, Always On</h3>
-                        <p>No account managers, no layers. Zach &amp; Carson are in every account, every week — reachable whenever you need us. We're in the work with you.</p>
                     </div>
                 </article>
             </div>
@@ -2922,7 +3113,13 @@
                 </article>
             </div>
 
-            <p class="packages-foot"><strong>3-month minimum</strong> · month-to-month after · every plan includes on-location filming &amp; full production</p>
+            <div class="packages-foot reveal">
+                <span class="foot-chip"><strong>3-Month Minimum</strong></span>
+                <span class="foot-divider">·</span>
+                <span class="foot-chip">Month-to-month after</span>
+                <span class="foot-divider">·</span>
+                <span class="foot-chip">On-location filming included</span>
+            </div>
         </div>
     </section>
 
@@ -3131,21 +3328,21 @@
                     text.textContent = words[i].text;
                     swap.style.setProperty('--cycle-bg', words[i].bg);
                     swap.classList.remove('out');
-                }, 650);
+                }, 400);
             }
 
             const style = document.createElement('style');
             style.textContent = `
                 .hero-title .row--cycle::before {
                     background: var(--cycle-bg, #FF2D6B) !important;
-                    transition: background 600ms cubic-bezier(0.16, 1, 0.3, 1);
+                    transition: background 380ms cubic-bezier(0.16, 1, 0.3, 1);
                 }
             `;
             document.head.appendChild(style);
             swap.style.setProperty('--cycle-bg', words[0].bg);
 
-            // Trigger first swap fast after the curtain lifts, then loop every 2.4s
-            setTimeout(() => { cycle(); setInterval(cycle, 2400); }, 800);
+            // Trigger first swap after curtain lifts, then loop faster
+            setTimeout(() => { cycle(); setInterval(cycle, 1700); }, 700);
         })();
 
         /* PROCESS — scroll hijack removed; vertical playbook now flows naturally */
