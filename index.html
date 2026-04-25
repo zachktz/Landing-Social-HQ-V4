@@ -88,6 +88,16 @@
 
         ::selection { background: var(--pink); color: var(--cream); }
 
+        /* HQ logo links — hidden CTAs that route to Calendly */
+        a.hq-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: transform 280ms var(--ease-snap);
+            display: block;
+        }
+        a.hq-link:hover { transform: scale(1.05); }
+
         /* Paper grain for warmth */
         body::before {
             content: '';
@@ -548,7 +558,7 @@
             display: flex;
             gap: 4rem;
             white-space: nowrap;
-            animation: scroll-ticker 32s linear infinite;
+            animation: scroll-ticker 27s linear infinite;
             font-family: 'Archivo Black', sans-serif;
             font-size: clamp(2rem, 4vw, 3.75rem);
             line-height: 1;
@@ -1457,6 +1467,9 @@
             font-size: clamp(1.125rem, 1.8vw, 1.5rem);
             color: var(--ink-muted);
             line-height: 1.4;
+            max-width: none;
+            margin-left: auto;
+            margin-right: auto;
         }
         .yourteam .team-grid {
             max-width: 1040px;
@@ -1515,15 +1528,12 @@
         }
         .team-pull-author {
             display: block;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--line);
+            margin-top: 0.875rem;
             font-family: 'Instrument Sans', sans-serif;
             font-style: normal;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
             color: var(--pink);
         }
         .yourteam-stamp {
@@ -1555,6 +1565,56 @@
             color: var(--pink);
             line-height: 1;
         }
+
+        /* ======================================
+           CLIENT QUOTES — three centered quotes between pull quote and Track Record
+           ====================================== */
+        .client-quotes {
+            max-width: 760px;
+            margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+        }
+        .client-quote {
+            position: relative;
+            padding: 0 clamp(1rem, 2vw, 2rem);
+        }
+        .client-quote-text {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.125rem, 1.6vw, 1.4rem);
+            line-height: 1.45;
+            color: var(--ink);
+            letter-spacing: -0.005em;
+            max-width: none;
+        }
+        .client-quote-cite {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            margin-top: 0.875rem;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        .client-quote-name {
+            color: var(--ink);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+        .client-quote-role {
+            color: var(--ink-muted);
+            font-weight: 400;
+        }
+        .client-quote-role a {
+            color: var(--pink);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 200ms var(--ease-snap);
+        }
+        .client-quote-role a:hover { border-bottom-color: var(--pink); }
 
         /* ======================================
            NUMBERS — giant moments
@@ -1695,14 +1755,86 @@
         }
 
         .numbers-note {
-            margin-top: 1.5rem;
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--ink-faint);
-            font-family: 'Instrument Sans', sans-serif;
-            font-weight: 500;
+            margin: 1.75rem auto 0;
+            max-width: 720px;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+            color: var(--ink);
             text-align: center;
+            letter-spacing: -0.005em;
+        }
+
+        /* Stat card link styling for IG handles */
+        .stat-tag a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 200ms var(--ease-snap), opacity 200ms var(--ease-snap);
+        }
+        .stat-tag a:hover { border-bottom-color: currentColor; opacity: 0.85; }
+
+        /* Stat 01 — text-based number display ('1 Million+ Views') */
+        .stat .num.num--text {
+            font-size: clamp(2.25rem, 3.6vw, 3.4rem);
+            line-height: 0.95;
+            white-space: normal;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15em;
+            letter-spacing: -0.04em;
+        }
+        .stat .num--text .num-text-sub {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.5em;
+            letter-spacing: -0.01em;
+            color: var(--pink);
+        }
+        .stat:nth-child(1) .num--text .num-text-sub { color: var(--pink); }
+
+        /* Stat 03 — testimonial variant (no big number) */
+        .stat--testimonial {
+            justify-content: flex-start;
+        }
+        .stat--testimonial .stat-headline {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.625rem, 2.4vw, 2.2rem);
+            line-height: 0.98;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-top: 0.25rem;
+        }
+        .stat--testimonial .stat-sub {
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: clamp(1rem, 1.25vw, 1.2rem);
+            color: var(--pink);
+            line-height: 1.3;
+            margin-bottom: 0.875rem;
+        }
+        .stat--testimonial .stat-quote {
+            margin: auto 0 0;
+            padding-top: 1rem;
+            border-top: 1.5px solid rgba(10, 10, 14, 0.2);
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.45;
+            color: var(--ink);
+        }
+        .stat--testimonial .stat-quote-cite {
+            display: block;
+            margin-top: 0.625rem;
+            font-family: 'Instrument Sans', sans-serif;
+            font-style: normal;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--pink);
         }
 
         /* ======================================
@@ -2068,7 +2200,7 @@
             line-height: 1;
             letter-spacing: 0.01em;
             text-transform: uppercase;
-            animation: cta-ticker 28s linear infinite;
+            animation: cta-ticker 20s linear infinite;
         }
         .cta-ticker--bot .cta-ticker-track {
             animation-duration: 36s;
@@ -2546,9 +2678,9 @@
             .hero-sticker { display: none; }
 
             /* Ticker — faster scroll on mobile */
-            .ticker-track { font-size: clamp(1.75rem, 9vw, 2.75rem); gap: 2.5rem; animation-duration: 16s; }
+            .ticker-track { font-size: clamp(1.75rem, 9vw, 2.75rem); gap: 2.5rem; animation-duration: 14s; }
             .ticker-track span { gap: 2.5rem; }
-            .cta-ticker-track { animation-duration: 14s; }
+            .cta-ticker-track { animation-duration: 10s; }
             .cta-ticker--bot .cta-ticker-track { animation-duration: 18s; }
 
             /* Story — stack gracefully */
@@ -2954,7 +3086,7 @@
                 </h1>
 
                 <p class="hero-sub">
-                    You know you should be on social media. You don't have the time. None of our clients do. That's why we exist.
+                    You schedule film days. We build your brand.
                 </p>
 
                 <div class="hero-ctas">
@@ -2983,7 +3115,7 @@
                 </div>
             </div>
         </div>
-        <div class="hero-sticker" aria-hidden="true">
+        <a class="hero-sticker hq-link" href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" aria-label="Book a discovery call">
             <div class="hero-sticker-disc">
                 <div class="hero-sticker-ring">
                     <svg viewBox="0 0 180 180">
@@ -3002,7 +3134,7 @@
                     <span class="mark">HQ</span>
                 </div>
             </div>
-        </div>
+        </a>
     </section>
 
     <!-- Ticker marquee -->
@@ -3022,7 +3154,7 @@
                 <div class="reveal">
                     <span class="kicker" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> What we do</span>
                     <h2 class="services-title">
-                        A few hours on camera is all that stands between you and a brand people <span class="ital">remember</span>.
+                        We exist to take social <span class="ital">off your plate.</span>
                     </h2>
                 </div>
                 <p class="services-lead reveal reveal-delay-1">
@@ -3036,7 +3168,7 @@
                     <h3 class="svc-title">Research</h3>
                     <div class="svc-body">
                         <span class="svc-tag">Niche-driven</span>
-                        <p class="svc-desc">Research starts every project. Our proprietary AI scans your niche daily, building a database of viral outliers, top hooks, and winning formats.</p>
+                        <p class="svc-desc">Research starts every project. Our proprietary AI scans your niche daily, building a database of viral hooks, topics and formats.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
@@ -3045,7 +3177,7 @@
                     <h3 class="svc-title">Scripting</h3>
                     <div class="svc-body">
                         <span class="svc-tag">Retention-driven</span>
-                        <p class="svc-desc">Scripts structured for retention. Strong hook, your expertise, true to your voice.</p>
+                        <p class="svc-desc">Scripts are structured for retention. A strong hook that's paired with your expertise and true to your voice.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
@@ -3063,7 +3195,7 @@
                     <h3 class="svc-title">Editing</h3>
                     <div class="svc-body">
                         <span class="svc-tag">Fast turnaround</span>
-                        <p class="svc-desc">Our in-house editing team turns raw footage into polished videos within 72 hours.</p>
+                        <p class="svc-desc">Our in-house editing team turns raw footage into polished viral videos within 72 hours.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
@@ -3072,7 +3204,7 @@
                     <h3 class="svc-title">Posting</h3>
                     <div class="svc-body">
                         <span class="svc-tag">Hands-off</span>
-                        <p class="svc-desc">We schedule, caption, and tag every post at peak times. You never think about posting again.</p>
+                        <p class="svc-desc">We schedule, caption, and tag every post at peak engagement times. You never think about posting again.</p>
                     </div>
                     <span class="svc-arrow">→</span>
                 </article>
@@ -3096,7 +3228,7 @@
                 <div>
                     <span class="kicker kicker--pink" style="margin-bottom: 1.5rem; display: inline-flex;"><span class="dot"></span> The Experience</span>
                     <h2 class="process-title">
-                        We exist to take social <span class="ital">off your plate.</span>
+                        A few hours on camera is all that stands between you and a brand people <span class="ital">remember.</span>
                     </h2>
                 </div>
             </div>
@@ -3107,7 +3239,7 @@
                     <div class="step-content">
                         <span class="step-tag">Who you are</span>
                         <h3 class="step-title">Discovery</h3>
-                        <p class="step-desc">30-minute call to learn your business, your audience, and what success on social looks like for you.</p>
+                        <p class="step-desc">30-minute call to learn your business, your ideal customer, and what success on social media means to you.</p>
                     </div>
                 </article>
                 <article class="step-row reveal reveal-delay-1">
@@ -3148,7 +3280,7 @@
 
     <!-- Your Team -->
     <section class="yourteam" id="team">
-        <div class="yourteam-stamp" aria-hidden="true">
+        <a class="yourteam-stamp hq-link" href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" aria-label="Book a discovery call">
             <svg viewBox="0 0 120 120">
                 <defs>
                     <path id="yourteam-stamp-path" d="M 60, 60 m -44, 0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" />
@@ -3160,7 +3292,7 @@
                 </g>
             </svg>
             <div class="yourteam-stamp-center">HQ</div>
-        </div>
+        </a>
         <div class="container">
             <div class="yourteam-head">
                 <div class="reveal"><span class="kicker"><span class="dot"></span> Your Team</span></div>
@@ -3191,19 +3323,39 @@
                         <div class="member-role">Co-Founder</div>
                         <h3 class="member-name">Carson Fassett</h3>
                         <div class="member-roletag">Creative · Production · Client Partnerships</div>
-                        <p class="member-bio">Carson started in sales and marketing straight out of high school. Over the past seven years, he's generated leads for small businesses by building funnels and running paid channels. That work scaled <strong>Mastiff Moving</strong> from zero to three trucks and hit six-figure months. He learned that every paid channel has the same flaw: when the budget stops, so do results. The only marketing that keeps paying is a brand people trust.</p>
+                        <p class="member-bio">Carson has spent the last 7 years generating leads for small businesses by building funnels and running paid ads. That work scaled <strong>Mastiff Moving</strong> from zero to three trucks and six-figure months. He learned that every paid channel has the same flaw: when the budget stops, so do results. The only marketing that keeps paying is a brand people trust.</p>
                     </div>
                 </article>
             </div>
 
             <blockquote class="team-pull reveal reveal-delay-2">
                 The systems Fortune 500 brands pay for. Built for San Diego service businesses.
-                <span class="team-pull-author">The thesis</span>
+                <span class="team-pull-author">Our thesis</span>
             </blockquote>
 
-            <p class="team-note reveal reveal-delay-2">
-                <strong>Plus our crew</strong> of editors, strategists, and producers. On every account, every week.
-            </p>
+            <div class="client-quotes">
+                <blockquote class="client-quote reveal">
+                    <p class="client-quote-text">"I thought this would take me months to figure out. YSHQ had me posting content I actually liked in two weeks."</p>
+                    <div class="client-quote-cite">
+                        <span class="client-quote-name">Adrian Waisfeld</span>
+                        <span class="client-quote-role">Tennis Coach, AW Tennis Academy</span>
+                    </div>
+                </blockquote>
+                <blockquote class="client-quote reveal reveal-delay-1">
+                    <p class="client-quote-text">"I used to spend Sundays trying to batch content. Now I block four hours a month and the rest of my time goes back to my clients."</p>
+                    <div class="client-quote-cite">
+                        <span class="client-quote-name">Kevin Lee</span>
+                        <span class="client-quote-role">Personal Trainer, <a href="https://instagram.com/ironkevinlee" target="_blank" rel="noopener">@ironkevinlee</a></span>
+                    </div>
+                </blockquote>
+                <blockquote class="client-quote reveal reveal-delay-2">
+                    <p class="client-quote-text">"We hit over a million views in three months. The lead inquiries started almost immediately. It's the best marketing investment I've ever made."</p>
+                    <div class="client-quote-cite">
+                        <span class="client-quote-name">Brad Hobson</span>
+                        <span class="client-quote-role">Title Insurance Agent, <a href="https://instagram.com/titleinsuranceguy" target="_blank" rel="noopener">@titleinsuranceguy</a></span>
+                    </div>
+                </blockquote>
+            </div>
         </div>
     </section>
 
@@ -3215,33 +3367,36 @@
                 <h2 class="numbers-title reveal reveal-delay-1">
                     Track <span class="ital">record.</span>
                 </h2>
-                <p class="numbers-lead reveal reveal-delay-2">One current client. One former role. One operational promise.</p>
+                <p class="numbers-lead reveal reveal-delay-2">What happens when the work is done right.</p>
             </div>
 
             <div class="numbers-grid">
                 <article class="stat reveal">
-                    <span class="stat-tag">@titleinsuranceguy</span>
-                    <div class="num">1<span class="unit">M</span><em>+</em></div>
-                    <h3 class="stat-label">Monthly views</h3>
-                    <p class="stat-note">Reached within three months of launch with <strong>Brad Hobson</strong>.</p>
+                    <span class="stat-tag"><a href="https://instagram.com/titleinsuranceguy" target="_blank" rel="noopener">@titleinsuranceguy</a></span>
+                    <div class="num num--text">1 Million+<span class="num-text-sub">Views</span></div>
+                    <h3 class="stat-label">Reached in 30 days</h3>
+                    <p class="stat-note">Achieved in month 3 of working with us.</p>
                 </article>
 
                 <article class="stat reveal reveal-delay-1">
-                    <span class="stat-tag">Monster Army</span>
+                    <span class="stat-tag"><a href="https://instagram.com/monsterarmy" target="_blank" rel="noopener">@monsterarmy</a></span>
                     <div class="num">350<span class="unit">K</span></div>
                     <h3 class="stat-label">Followers grown</h3>
                     <p class="stat-note">From <strong>40K to 350K</strong> under Zach's strategy at Monster Energy.</p>
                 </article>
 
-                <article class="stat reveal reveal-delay-2">
-                    <span class="stat-tag">Founder-led</span>
-                    <div class="num">100<span class="unit">%</span></div>
-                    <h3 class="stat-label">Both founders, every account</h3>
-                    <p class="stat-note">Every week. No layers, no account managers, no exceptions.</p>
+                <article class="stat stat--testimonial reveal reveal-delay-2">
+                    <span class="stat-tag">Founder operated</span>
+                    <h3 class="stat-headline">Work directly with us</h3>
+                    <p class="stat-sub">Never talk to an account rep</p>
+                    <blockquote class="stat-quote">
+                        "I look at client stats every day. I'm filming with clients every day. We're as hands-on as it gets."
+                        <span class="stat-quote-cite">Carson, co-founder</span>
+                    </blockquote>
                 </article>
             </div>
 
-            <p class="numbers-note reveal">★ Every brand gets its own playbook.</p>
+            <p class="numbers-note reveal">It's your turn.</p>
         </div>
     </section>
 
@@ -3250,8 +3405,8 @@
         <!-- Top ticker -->
         <div class="cta-ticker" aria-hidden="true">
             <div class="cta-ticker-track">
-                <span>Let's talk <i>✦</i> Now booking 2026 <i>✦</i> Real conversations <i>✦</i> No pitch decks <i>✦</i> Let's talk <i>✦</i> Now booking 2026 <i>✦</i> Real conversations <i>✦</i> No pitch decks <i>✦</i></span>
-                <span>Let's talk <i>✦</i> Now booking 2026 <i>✦</i> Real conversations <i>✦</i> No pitch decks <i>✦</i> Let's talk <i>✦</i> Now booking 2026 <i>✦</i> Real conversations <i>✦</i> No pitch decks <i>✦</i></span>
+                <span>What do I post? <i>✦</i> When do I post? <i>✦</i> How do I edit? <i>✦</i> Where do I find content ideas? <i>✦</i> How do I turn views into clients? <i>✦</i></span>
+                <span>What do I post? <i>✦</i> When do I post? <i>✦</i> How do I edit? <i>✦</i> Where do I find content ideas? <i>✦</i> How do I turn views into clients? <i>✦</i></span>
             </div>
         </div>
 
@@ -3263,11 +3418,11 @@
                     </div>
 
                     <h2 class="cta-title reveal reveal-delay-1">
-                        Ready to be <span class="ital">impossible</span> to ignore?
+                        Become <span class="ital">impossible</span> to ignore
                     </h2>
 
                     <p class="cta-sub reveal reveal-delay-2">
-                        Let's make social media your best salesperson.
+                        Let social media sell for you.
                     </p>
 
                     <div class="cta-actions reveal reveal-delay-3">
@@ -3281,7 +3436,7 @@
                 </div>
 
                 <div class="cta-right reveal reveal-delay-2">
-                    <div class="cta-sticker" aria-hidden="true">
+                    <a class="cta-sticker hq-link" href="https://calendly.com/d/cxrq-w97-n9c/discovery-call-your-social-hq" target="_blank" rel="noopener" aria-label="Book a discovery call">
                         <div class="cta-sticker-disc">
                             <div class="cta-sticker-ring">
                                 <svg viewBox="0 0 200 200">
@@ -3295,7 +3450,7 @@
                             </div>
                             <div class="cta-sticker-center"><span>HQ</span></div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
